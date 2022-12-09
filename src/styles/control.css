@@ -1,0 +1,12 @@
+form {
+  width: 300px;
+}
+
+.label {
+  margin-left: 10px;
+}
+
+.display {
+  font-size: 20px;
+  padding: 5px;
+}
