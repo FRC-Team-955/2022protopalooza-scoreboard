@@ -8,8 +8,8 @@ function Control() {
   const [dataArr, setDataArr] = useState([]);
   useEffect(() => {
     setScore(localStorage.getItem("score") || 0);
-    setScore(localStorage.getItem("scoreArr") || []);
-    setScore(localStorage.getItem("dataArr") || []);
+    setScoreArr(localStorage.getItem("scoreArr") || []);
+    setDataArr(localStorage.getItem("dataArr") || []);
     window.addEventListener("storage", onStorageUpdate);
     return () => {
       window.removeEventListener("storage", onStorageUpdate);
@@ -27,7 +27,7 @@ function Control() {
   };
 
   const changeDataArr = (e) => {
-    setScoreArr(e);
+    setDataArr(e);
     localStorage.setItem("dataArr", e);
   };
 
@@ -142,6 +142,7 @@ function Control() {
       ]);
     }
     changeDataArr([teamNumber, name, attemptNumber, time]);
+    // changeDataArr([0, 0, 0, time]);
   }, [
     attemptNumber,
     fouls,

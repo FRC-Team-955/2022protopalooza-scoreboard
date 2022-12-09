@@ -1,8 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
 #board {
-  background-color: #25241d;
-  width: 50rem;
+  background-color: #9c0812;
+  width: 100%;
+  height: 100vh;
 }
 
+#team-name{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 50px;
+  text-align: center;
+  background-image: url('../pages/drawing.svg');
+  /* background-size: 25%; */
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.outerBoarder{
+  background-color: white;
+  border-radius: 24px;
+  width: 300px;
+  padding: 10px;
+
+}
+
+#score-holder{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+#score-holder p{
+  color:white;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 40px;
+  margin: 0;
+  text-align: center;
+}
+
+#time{
+  width: 360px;
+}
+
+.innerBoarder{
+  background-color: white;
+  border: 10px solid #9C0812;
+  font-size: 100px;
+  display: flex;
+  font-family: 'Zen Dots', cursive;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 
 #top {
   padding: 1rem;
   display: flex;
@@ -26,4 +78,4 @@
   width: 100%;
   height: 100vh;
   background-color: #9c0812;
-}
+} */
