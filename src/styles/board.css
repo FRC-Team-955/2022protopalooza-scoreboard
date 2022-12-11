@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap");
 
 #board {
   background-color: #9c0812;
@@ -7,51 +7,112 @@
   height: 100vh;
 }
 
-#team-name{
-  font-family: 'Orbitron', sans-serif;
+#team-name {
+  font-family: "Orbitron", sans-serif;
   font-size: 50px;
   text-align: center;
-  background-image: url('../pages/drawing.svg');
-  /* background-size: 25%; */
+  background-image: url("../pages/drawing.svg");
+  background-size: 1000px;
   background-repeat: no-repeat;
   background-position: 50%;
 }
 
-.outerBoarder{
+.outerBoarder {
   background-color: white;
   border-radius: 24px;
   width: 300px;
   padding: 10px;
-
 }
 
-#score-holder{
+#score-holder {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin-top: 50px;
 }
 
-#score-holder p{
-  color:white;
-  font-family: 'Orbitron', sans-serif;
+#score-holder p {
+  color: white;
+  font-family: "Orbitron", sans-serif;
   font-size: 40px;
   margin: 0;
   text-align: center;
 }
 
-#time{
-  width: 360px;
+#time {
+  width: 380px;
 }
 
-.innerBoarder{
+.innerBoarder {
   background-color: white;
-  border: 10px solid #9C0812;
+  border: 10px solid #9c0812;
   font-size: 100px;
   display: flex;
-  font-family: 'Zen Dots', cursive;
+  font-family: "Zen Dots", cursive;
   align-items: center;
   justify-content: center;
+}
+
+#score-diagram {
+  background-color: white;
+  display: flex;
+  font-family: "Zen Dots", cursive;
+  font-size: 40px;
+}
+
+#diagram-left {
+  /* border-right: 5px solid black; */
+  border-top: 10px solid red;
+  border-left: 10px solid red;
+  border-bottom: 10px solid red;
+  display: flex;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  align-items: center;
+}
+
+#diagram-left div {
+  border-top: 10px solid red;
+  border-left: 10px solid red;
+  border-bottom: 10px solid red;
+  display: flex;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+  align-items: center;
+}
+
+#black-strip {
+  width: 10px;
+  background-color: black;
+}
+
+#diagram-right {
+  /* border-left: 5px solid black; */
+  border-top: 10px solid red;
+  border-right: 10px solid red;
+  border-bottom: 10px solid red;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+#diagram-right div {
+  display: flex;
+  border-top: 10px solid red;
+  border-right: 10px solid red;
+  border-bottom: 10px solid red;
+  flex-direction: row-reverse;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-right: 10px;
+  align-items: center;
 }
 
 /* 

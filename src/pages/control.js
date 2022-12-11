@@ -1,6 +1,6 @@
 import "../styles/control.css";
 import { useState, useEffect } from "react";
-import ScoreAdder from "./score-adder";
+import ScoreAdder from "../components/score-adder";
 
 function Control() {
   const [score, setScore] = useState(0);
@@ -62,14 +62,14 @@ function Control() {
     setVarietyBonus(0);
     setFouls(0);
 
-    setName("");
+    setName("Team Name");
     setTeamNumber(0);
     setAttemptNumber(1);
 
     changeScore(0);
-    changeDataArr([]);
-    changeScoreArr([]);
-    setTime(150);
+    changeDataArr([1, "Team Name", 0, 5]);
+    changeScoreArr([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
+    setTime(5);
     setStarted(false);
   };
 
@@ -90,9 +90,14 @@ function Control() {
   const [varietyBonus, setVarietyBonus] = useState(0);
   const [fouls, setFouls] = useState(0);
 
-  const [name, setName] = useState("");
+  const [name, setName] = useState("Team Name");
   const [attemptNumber, setAttemptNumber] = useState(1);
   const [teamNumber, setTeamNumber] = useState(0);
+  const [dataToSend, setDataToSend] = useState([
+    teamNumber,
+    name,
+    attemptNumber,
+  ]);
 
   const [time, setTime] = useState(150);
   const [started, setStarted] = useState(false);
@@ -141,7 +146,7 @@ function Control() {
         fouls,
       ]);
     }
-    changeDataArr([teamNumber, name, attemptNumber, time]);
+    changeDataArr([...[dataToSend], time]);
     // changeDataArr([0, 0, 0, time]);
   }, [
     attemptNumber,
@@ -165,6 +170,7 @@ function Control() {
     timeBonus,
     varietyBonus,
     started,
+    dataToSend,
   ]);
 
   useEffect(() => {
@@ -234,7 +240,12 @@ function Control() {
             marginTop: "10px",
           }}
         />
-        <button className="btn btn-success">Send</button>
+        <button
+          className="btn btn-success"
+          onClick={() => setDataToSend([teamNumber, name, attemptNumber])}
+        >
+          Send
+        </button>
       </div>
       <div style={{ display: "flex" }}>
         <div style={{ marginRight: "25px" }}>

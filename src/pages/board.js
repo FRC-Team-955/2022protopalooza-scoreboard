@@ -1,10 +1,13 @@
 import "../styles/board.css";
+import "../styles/roller.css";
 import { useState, useEffect } from "react";
+import FieldDisplay from "../components/field-display";
 
 function Board() {
   const [score, setScore] = useState(0);
   const [scoreArr, setScoreArr] = useState([]);
   const [dataArr, setDataArr] = useState([]);
+  const [state, setState] = useState(0);
   useEffect(() => {
     setScore(localStorage.getItem("score") || 0);
     setScoreArr(localStorage.getItem("scoreArr") || []);
@@ -20,49 +23,129 @@ function Board() {
       setScore(newValue);
     }
     if (key === "scoreArr") {
-      setScoreArr(newValue);
+      setScoreArr(newValue.split(","));
     }
     if (key === "dataArr") {
-      setDataArr(newValue.split(','));
+      setDataArr(newValue.split(","));
     }
   };
-  let name = "Team Name"
 
   return (
     <div id="board">
-      <div id="team-name">{name}</div>
-      <div id="score-holder">
-        <div>
-          <p>Score</p>
-          <div className="outerBoarder">
-            <div className="innerBoarder">
-              {score}
+      {state == 0 ? (
+        <>
+          <div id="team-name">{dataArr[1]}</div>
+          <div id="score-holder">
+            <div>
+              <p>Score</p>
+              <div className="outerBoarder">
+                <div className="innerBoarder">{score}</div>
+              </div>
+            </div>
+
+            <div>
+              <p>Time</p>
+              <div className="outerBoarder" id="time">
+                <div
+                  className="innerBoarder"
+                  style={{ color: dataArr[3] == 0 ? "#9c0812" : "black" }}
+                >
+                  {(dataArr[3] - (dataArr[3] % 60)) / 60}:
+                  {dataArr[3] % 60 < 10
+                    ? "0" + (dataArr[3] % 60)
+                    : dataArr[3] % 60}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div>
-          <p>Time</p>
-          <div className="outerBoarder" id="time">
-          <div className="innerBoarder">
-            {(dataArr[3] - (dataArr[3] % 60)) / 60}:
-            {dataArr[3] % 60 < 10 ? "0" + (dataArr[3] % 60) : dataArr[3] % 60}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-around",
+              marginTop: "50px",
+            }}
+          >
+            <div>
+              <span
+                style={{
+                  fontFamily: "Orbitron",
+                  fontSize: "40px",
+                  color: "white",
+                }}
+              >
+                Top
+              </span>
+              <span
+                style={{
+                  fontFamily: "Orbitron",
+                  fontSize: "40px",
+                  color: "white",
+                  float: "right",
+                }}
+              >
+                Bottom
+              </span>
+              <div id="score-diagram">
+                <div id="diagram-left">
+                  {parseInt(scoreArr[4]) + parseInt(scoreArr[5])}
+                  <div>
+                    {parseInt(scoreArr[2]) + parseInt(scoreArr[3])}
+                    <div style={{ paddingRight: "10px" }}>
+                      {parseInt(scoreArr[0]) + parseInt(scoreArr[1])}
+                    </div>
+                  </div>
+                </div>
+                <div id="black-strip"></div>
+                <div id="diagram-right">
+                  {parseInt(scoreArr[10]) + parseInt(scoreArr[11])}
+                  <div>
+                    {parseInt(scoreArr[8]) + parseInt(scoreArr[9])}
+                    <div style={{ paddingLeft: "10px" }}>
+                      {parseInt(scoreArr[6]) + parseInt(scoreArr[7])}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <FieldDisplay scoreArr={scoreArr} />
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
+      {state == 1 ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+          }}
+        >
+          <h1
+            style={{
+              fontFamily: "Orbitron",
+              fontSize: "90px",
+              color: "white",
+              marginRight: "50px",
+            }}
+          >
+            Calculating Score
+          </h1>
+          <div className="lds-roller" style={{ scale: "150%" }}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
         </div>
-        </div>
-        
-      </div>
-      {/* <div id="board">
-        <div id="top">
-          <div id="score" className="big-num">
-            {score}
-          </div>
-          <div id="time" className="big-num">
-            2:15
-          </div>
-        </div>
-        <div id="bottom"></div>
-      </div> */}
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
