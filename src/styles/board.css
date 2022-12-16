@@ -17,6 +17,18 @@
   background-position: 50%;
 }
 
+.title {
+  /* background-image: url("../pages/drawing.svg");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 1000px; */
+
+  font-family: "Orbitron";
+  text-align: center;
+  font-size: 75px;
+  color: yellow;
+}
+
 .outerBoarder {
   background-color: white;
   border-radius: 24px;

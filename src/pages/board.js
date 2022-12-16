@@ -32,7 +32,7 @@ function Board() {
 
   return (
     <div id="board">
-      {state == 0 ? (
+      {dataArr[4] == 0 ? (
         <>
           <div id="team-name">{dataArr[1]}</div>
           <div id="score-holder">
@@ -114,7 +114,7 @@ function Board() {
       ) : (
         <></>
       )}
-      {state == 1 ? (
+      {dataArr[4] == 1 ? (
         <div
           style={{
             display: "flex",
@@ -142,6 +142,15 @@ function Board() {
             <div></div>
             <div></div>
           </div>
+        </div>
+      ) : (
+        <></>
+      )}
+      {dataArr[4] == 3 ? (
+        <div>
+          <h1 className="title">
+            CV Robotics <br /> Protopalooza
+          </h1>
         </div>
       ) : (
         <></>

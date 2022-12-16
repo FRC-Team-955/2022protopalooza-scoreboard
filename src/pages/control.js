@@ -98,6 +98,7 @@ function Control() {
     name,
     attemptNumber,
   ]);
+  const [boardState, setBoardState] = useState(0);
 
   const [time, setTime] = useState(150);
   const [started, setStarted] = useState(false);
@@ -146,7 +147,7 @@ function Control() {
         fouls,
       ]);
     }
-    changeDataArr([...[dataToSend], time]);
+    changeDataArr([...[dataToSend], time, boardState]);
     // changeDataArr([0, 0, 0, time]);
   }, [
     attemptNumber,
@@ -171,6 +172,7 @@ function Control() {
     varietyBonus,
     started,
     dataToSend,
+    boardState,
   ]);
 
   useEffect(() => {
@@ -188,6 +190,56 @@ function Control() {
 
   return (
     <div>
+      <div>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
+            value={0}
+            checked={boardState == 0 ? true : false}
+            onChange={(e) => setBoardState(e.currentTarget.value)}
+          />
+          <label className="form-check-label">Score Board</label>
+        </div>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+            value={1}
+            checked={boardState == 1 ? true : false}
+            onChange={(e) => setBoardState(e.currentTarget.value)}
+          />
+          <label className="form-check-label">Calculating Score</label>
+        </div>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+            value={2}
+            checked={boardState == 2 ? true : false}
+            onChange={(e) => setBoardState(e.currentTarget.value)}
+          />
+          <label className="form-check-label">Final Result</label>
+        </div>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
+            value={3}
+            checked={boardState == 3 ? true : false}
+            onChange={(e) => setBoardState(e.currentTarget.value)}
+          />
+          <label className="form-check-label">Title</label>
+        </div>
+      </div>
       <div
         style={{
           marginBottom: "25px",
