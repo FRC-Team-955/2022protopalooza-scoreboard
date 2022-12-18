@@ -1,6 +1,7 @@
 import "../styles/control.css";
 import { useState, useEffect } from "react";
 import ScoreAdder from "../components/score-adder";
+// import startSound from "./autonstart.mp3";
 
 function Control() {
   const [score, setScore] = useState(0);
@@ -64,12 +65,11 @@ function Control() {
 
     setName("Team Name");
     setTeamNumber(0);
-    setAttemptNumber(1);
 
     changeScore(0);
-    changeDataArr([1, "Team Name", 0, 5]);
+    changeDataArr([1, "Team Name", 0, 150]);
     changeScoreArr([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
-    setTime(5);
+    setTime(150);
     setStarted(false);
   };
 
@@ -91,7 +91,7 @@ function Control() {
   const [fouls, setFouls] = useState(0);
 
   const [name, setName] = useState("Team Name");
-  const [attemptNumber, setAttemptNumber] = useState(1);
+  const [attemptNumber, setAttemptNumber] = useState(0);
   const [teamNumber, setTeamNumber] = useState(0);
   const [dataToSend, setDataToSend] = useState([
     teamNumber,
@@ -104,6 +104,13 @@ function Control() {
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
+    if (time == 0) {
+      let sound = new Audio("/buzzer.mp3");
+      sound.play();
+    }
+  }, [time]);
+
+  useEffect(() => {
     let foulScore = 0;
     if (fouls > 2) {
       foulScore = 6 + (fouls - 2) * 5;
@@ -111,7 +118,7 @@ function Control() {
       foulScore = fouls * 3;
     }
 
-    if (started) {
+    if (true) {
       changeScore(
         his * 7 +
           hms * 5 +
@@ -265,33 +272,6 @@ function Control() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <span className="label">Attempt Number: </span>
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Enter name"
-          value={attemptNumber}
-          onChange={(e) => setAttemptNumber(parseInt(e.target.value))}
-          style={{
-            width: "15%",
-            display: "inline",
-            marginTop: "10px",
-          }}
-        />
-        <span className="label">Team Number: </span>
-        <input
-          type="number"
-          className="form-control"
-          placeholder="Enter name"
-          value={teamNumber}
-          onChange={(e) => setTeamNumber(parseInt(e.target.value))}
-          style={{
-            width: "15%",
-            display: "inline",
-            marginRight: "15px",
-            marginTop: "10px",
-          }}
-        />
         <button
           className="btn btn-success"
           onClick={() => setDataToSend([teamNumber, name, attemptNumber])}
@@ -410,7 +390,11 @@ function Control() {
 
       <button
         className="btn btn-success"
-        onClick={() => setStarted(true)}
+        onClick={() => {
+          setStarted(true);
+          let sound = new Audio("/autonstart.mp3");
+          sound.play();
+        }}
         style={{ marginRight: "10px" }}
       >
         Start

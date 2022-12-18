@@ -1,6 +1,7 @@
 import "../styles/board.css";
 import "../styles/roller.css";
 import { useState, useEffect } from "react";
+import Confetti from "react-confetti";
 import FieldDisplay from "../components/field-display";
 
 function Board() {
@@ -120,7 +121,9 @@ function Board() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            height: "100vh",
+            height: "95vh",
+            position: "absolute",
+            width: "100%",
           }}
         >
           <h1
@@ -146,11 +149,92 @@ function Board() {
       ) : (
         <></>
       )}
+      {dataArr[4] == 2 ? (
+        <>
+          <Confetti className="fade-out" />
+          <div id="team-name">{dataArr[1]}</div>
+          <div id="score-holder">
+            <div>
+              <p>Final Score</p>
+              <div className="outerBoarder">
+                <div className="innerBoarder">{score}</div>
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-around",
+              marginTop: "50px",
+            }}
+          >
+            <div>
+              <span
+                style={{
+                  fontFamily: "Orbitron",
+                  fontSize: "40px",
+                  color: "white",
+                }}
+              >
+                Top
+              </span>
+              <span
+                style={{
+                  fontFamily: "Orbitron",
+                  fontSize: "40px",
+                  color: "white",
+                  float: "right",
+                }}
+              >
+                Bottom
+              </span>
+              <div id="score-diagram">
+                <div id="diagram-left">
+                  {parseInt(scoreArr[4]) + parseInt(scoreArr[5])}
+                  <div>
+                    {parseInt(scoreArr[2]) + parseInt(scoreArr[3])}
+                    <div style={{ paddingRight: "10px" }}>
+                      {parseInt(scoreArr[0]) + parseInt(scoreArr[1])}
+                    </div>
+                  </div>
+                </div>
+                <div id="black-strip"></div>
+                <div id="diagram-right">
+                  {parseInt(scoreArr[10]) + parseInt(scoreArr[11])}
+                  <div>
+                    {parseInt(scoreArr[8]) + parseInt(scoreArr[9])}
+                    <div style={{ paddingLeft: "10px" }}>
+                      {parseInt(scoreArr[6]) + parseInt(scoreArr[7])}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <FieldDisplay scoreArr={scoreArr} />
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
       {dataArr[4] == 3 ? (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <h1 className="title">
             CV Robotics <br /> Protopalooza
           </h1>
+          <img
+            width="500px"
+            src="https://www.silhouettepng.com/wp-content/uploads/2/Goat-Silhouette-Transparent-PNG.png"
+          />
+          <h2 className="title" style={{ color: "white" }}>
+            Goat Grab
+          </h2>
         </div>
       ) : (
         <></>

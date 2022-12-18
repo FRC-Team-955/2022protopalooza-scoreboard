@@ -7,7 +7,7 @@ function FieldDisplay({ scoreArr }) {
           marginBottom: "10px",
         }}
       >
-        Bonuses
+        Variety Bonuses
         <div
           style={{
             fontFamily: "Zen Dots",

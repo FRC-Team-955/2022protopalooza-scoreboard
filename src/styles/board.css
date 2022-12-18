@@ -127,6 +127,21 @@
   align-items: center;
 }
 
+/* @keyframes slideIn {
+  from {
+    transform: translateY(-2000px);
+  }
+  to {
+    transform: translateY(-17px);
+  }
+}
+
+.slide-in {
+  animation: slideIn 1.5s ease-out;
+  transform: translateY(-100vh);
+  background-color: #9c0812;
+} */
+
 /* 
 #top {
   padding: 1rem;
